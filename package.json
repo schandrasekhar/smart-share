@@ -1,0 +1,11 @@
+{
+    "name": "smartshare",
+    "description": "A smart sharing tool",
+    "dependencies": {
+        "RedisClass": "git+https://github.com/schandrasekhar/redisClass.git#v1.0.1",
+        "UtilClass": "git+https://github.com/schandrasekhar/utilClass.git#v1.0.1",
+        "express": "^4.14.0",
+        "body-parser": "^1.15.2"
+    },
+    "private": true
+}
