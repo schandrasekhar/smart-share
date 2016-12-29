@@ -9,6 +9,7 @@ var config = {
     },
 
     "sessionKeyLength": 15,
+    "sessionTimeout": 100000000,
 
     "paths": {
         "root": "/",
