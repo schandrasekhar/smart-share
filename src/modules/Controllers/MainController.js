@@ -3,43 +3,54 @@
 var config = require("../../config.js");
 var Redis = require('RedisClass');
 var cache = new Redis(config.cache.redis);
+var MongoClass = require('MongoClass');
+var mongo = new MongoClass(config.db.mongo);
 
 var MainController = function() {
-    var userKey, cacheKey;
+
+    var userCollection = config.user.collection;
 
     var contructor = function() {
-        setUserKey();
+        //
     };
 
-    var setUserKey = function() {
-        userKey = config.userKey;
-        cacheKey = "smart-share-" + userKey;
+    this.index = function(req, res) {
+        var absolutePath = __dirname + "../../../public/";
+        res.sendFile("index.html", {root: absolutePath});
     };
 
-    this.get = function(req, res) {
-        cache.hashGetAll(cacheKey,
+    this.getAll = function(req, res) {
+        var user = req.session.user;
+        if (user) {
+            mongo.find(userCollection,
                 function(err) {
-                    cacheErr(err, res);
+                    dbErr(err, res);
                 },
-                sendData(data, req, res));
+                function(data) {
+                    sendData(data, req, res);
+                });
+        } else {
+            console.log("Error: No user found");
+            res.status(403).end();
+        }
     };
 
-    this.add = function(req, res) {
-        var timestamp, data, requestData;
+    this.upload = function(req, res) {
+        var timestamp, data, requestData, user;
+        user = req.session.user;
         requestData = req.body.data;
-        if (requestData) {
+
+        if (requestData && user) {
             timestamp = (new Date()).getTime();
             data = {
                 timestamp: requestData
             };
-
-            cache.hashInsert(cacheKey, data,
-                    function(err) {
-                        cacheErr(err, res);
-                    },
-                    redirect(req, res, config.paths.get));
+            mongo.updateOne(userCollection, user, data,
+                function(err) {
+                    dbErr(err, res);
+                },
+                sendSuccess(req, res));
         }
-        
     };
 
     var redirect = function(req, res, path) {
@@ -54,15 +65,18 @@ var MainController = function() {
 
     var sendData = function(data, request, response) {
         var jsonData = {
+            "status": true,
             "data": data
         };
-
-        //TODO send file
-
         response.send(jsonData);
     };
 
     var cacheErr = function(err, response) {
+        console.log(err);
+        response.status(500).end();
+    };
+
+    var dbErr = function(err, response) {
         console.log(err);
         response.status(500).end();
     };

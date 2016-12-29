@@ -8,11 +8,31 @@ var config = {
         }
     },
 
-    "userKey": "12345",
+    "sessionKeyLength": 15,
 
     "paths": {
-        "get": "/",
-        "add": "/upload"
+        "root": "/",
+        "upload": "/upload",
+        "login": "/login",
+        "register": "/register",
+        "getAll": "/getAll"
+    },
+
+    "protectedRoutes": ["/upload", "/getAll"],
+
+    "user": {
+        "collection": ""
+    },
+
+    "db": {
+        "mongo": {
+            "dbPath": "mongodb://localhost:27017,localhost:27018,localhost:27019/encryptedcloud?w=0&readPreference=secondary",
+            "options": {
+                "replicaSet": {
+                    "rs_name": "rs0"
+                }
+            }
+        }
     }
 };
 

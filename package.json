@@ -4,6 +4,7 @@
     "dependencies": {
         "RedisClass": "git+https://github.com/schandrasekhar/redisClass.git#v1.0.1",
         "UtilClass": "git+https://github.com/schandrasekhar/utilClass.git#v1.0.1",
+        "MongoClass": "git+https://github.com/schandrasekhar/mongoClass.git#v1.0.0",
         "express": "^4.14.0",
         "body-parser": "^1.15.2"
     },
