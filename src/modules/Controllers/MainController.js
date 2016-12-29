@@ -22,7 +22,7 @@ var MainController = function() {
     this.getAll = function(req, res) {
         var user = req.session.user;
         if (user) {
-            mongo.find(userCollection,
+            mongo.find(userCollection, user,
                 function(err) {
                     dbErr(err, res);
                 },

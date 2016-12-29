@@ -12,13 +12,11 @@ var config = {
 
     "paths": {
         "root": "/",
-        "upload": "/upload",
-        "login": "/login",
         "register": "/register",
-        "getAll": "/getAll"
+        "login": "/login",
+        "getAll": "/getAll",
+        "upload": "/upload"
     },
-
-    "protectedRoutes": ["/upload", "/getAll"],
 
     "user": {
         "collection": ""
@@ -35,5 +33,7 @@ var config = {
         }
     }
 };
+
+config.protectedRoutes = [config.paths.upload, config.paths.getAll];
 
 module.exports = config;
