@@ -1,0 +1,6 @@
+{
+    "name": "smartshare",
+    "description": "A smart sharing tool",
+    "dependencies": {},
+    "private": true
+}
