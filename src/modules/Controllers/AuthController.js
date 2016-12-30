@@ -32,8 +32,8 @@ var AuthController = function() {
 
     this.register = function(req, res) {
         var username = parseData(req.body.username),
-            pass = createHash(parseData(req.body.pass));
-            cred;
+            pass = createHash(parseData(req.body.pass)),
+            cred = {};
         cred = {
             "username": username,
             "key": pass
@@ -84,6 +84,7 @@ var AuthController = function() {
 
     var setUserSession = function(username, response, successFunc) {
         var sessionKey = utils.getRandomHash(cache.sessionKeyLength),
+        //TODO create two objects in cache, one which has user meta data, the other to hold sessionKey and username
             session = {
                 "sessionKey": sessionKey,
                 "dateUpdated": (new Date()).getTime()

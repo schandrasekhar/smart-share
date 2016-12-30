@@ -1,20 +1,25 @@
 'use strict';
 
 var config = require("./config.js");
-var router = require('express')();
+var express = require("express");
+var router = express();
 var mainController = require("./modules/Controllers/MainController.js");
 var authController = require("./modules/Controllers/AuthController.js");
 var authMiddleware = require("./modules/Middleware/AuthMiddleware.js");
 var bodyParser = require("body-parser");
+var staticMiddleware = require("./modules/Middleware/StaticMiddleware");
 var port = process.argv[2] ? process.argv[2] : null;
 
 if (port) {
+
     //middleware defined below
-    router.use(bodyParser);
+    router.use(staticMiddleware);
+    router.use(bodyParser.urlencoded({ extended: false }));
+    router.use(bodyParser.json());
     router.use(authMiddleware);
 
     //routes are defined below
-    router.get(config.paths.root, function(req, res) {
+    router.get("/", function(req, res) {
         mainController.index(req, res);
     });
 

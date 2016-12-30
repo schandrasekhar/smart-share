@@ -2,22 +2,41 @@
 <html>
 <head>
     <title>smart-share</title>
+    <link rel="stylesheet" type="text/css" href="/build/css/all.min.css">
+    <script type="text/javascript" src="/build/js/all.min.js"></script>
 </head>
 <body>
+
+<!-- create template -->
+<div>
+    <form id="create">
+        <div>
+            <label>Username:</label>
+            <input type="email" name="createusername" required="" />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="text" name="createpass" required="" />
+        </div>
+        <div>
+            <input type="submit" name="create" value="Create" />
+        </div>
+    </form>
+</div>
 
 <!-- login template -->
 <div>
     <form>
         <div>
             <label>Username:</label>
-            <input type="email" name="username" required="" />
+            <input type="email" name="loginusername" required="" />
         </div>
         <div>
             <label>Password:</label>
-            <input type="text" name="pass" required="" />
+            <input type="text" name="loginpass" required="" />
         </div>
         <div>
-            <input type="submit" name="login" />
+            <input type="submit" name="login" value="Login" />
         </div>
     </form>
 </div>
@@ -29,7 +48,7 @@
             <input type="text" name="data" required="" />
         </div>
         <div>
-            <input type="submit" name="add" />
+            <input type="submit" name="add" value="Add" />
         </div>
     </form>
 </div>

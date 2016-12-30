@@ -15,7 +15,7 @@ var MainController = function() {
     };
 
     this.index = function(req, res) {
-        var absolutePath = __dirname + "../../../public/";
+        var absolutePath = __dirname + "/../../../public/build/html";
         res.sendFile("index.html", {root: absolutePath});
     };
 

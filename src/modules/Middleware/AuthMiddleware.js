@@ -7,7 +7,7 @@ var sessionTimeout = config.sessionTimeout;
 var protectedRoutes = config.protectedRoutes;
 
 var AuthMiddleware = function(req, res, next) {
-    //TODO
+    next();
 };
 
 module.exports = AuthMiddleware;
