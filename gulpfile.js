@@ -17,6 +17,7 @@ paths.scripts = ["./bower_components/jquery/dist/jquery.js",
                  "./src/modules/Web/js/getAll.js"];
 
 paths.styles = ["./bower_components/pure/pure.css",
+                "./bower_components/pure/grids-responsive.css",
                 "./src/modules/Web/css/app.css"];
 
 paths.templates = ["./src/modules/Web/html/index.html"];

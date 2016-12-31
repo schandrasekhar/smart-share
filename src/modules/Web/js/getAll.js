@@ -51,14 +51,35 @@ smartshare.getAll = function() {
             i = 0,
             length = keys.length,
             fragment = document.createDocumentFragment(),
-            listChildEl;
+            partial;
         for (; i < length; i++) {
-            listChildEl = document.createElement("li");
-            listChildEl.textContent = keys[i] + "  ===>  " + data[keys[i]];
-            fragment.appendChild(listChildEl);
+            partial = createPartial(keys[i], data[keys[i]])
+            fragment.appendChild(partial);
         }
 
         $(listElementId).empty().append(fragment);
+    };
+
+    var createPartial = function(timestamp, data) {
+        var listChildEl = document.createElement("li"),
+            divChild = document.createElement("div"),
+            divInnerChild = document.createElement("div"),
+            divSecondInnerChild = document.createElement("div"),
+            date = new Date(+timestamp);
+        divChild.classList.add("pure-g");
+
+        divInnerChild.classList.add("pure-u-1", "pure-u-md-1-3", "list-item-timestamp");
+        divInnerChild.textContent = date.toDateString() + " " + date.toTimeString();
+
+        divSecondInnerChild.classList.add("pure-u-1", "pure-u-md-2-3", "list-item-data");
+        divSecondInnerChild.textContent = data;
+        
+        divChild.appendChild(divInnerChild);
+        divChild.appendChild(divSecondInnerChild);
+
+        listChildEl.classList.add("getall-list-item");
+        listChildEl.appendChild(divChild);
+        return listChildEl;
     };
 
     var getSessionKey = function() {
