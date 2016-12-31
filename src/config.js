@@ -35,9 +35,10 @@ var config = {
 
     "user": {
         "collection": {
-            "auth": "auth",
+            "auth": "authy",
             "data": "data"
-        }
+        },
+        "userHashLength": 10
     },
 
     "db": {

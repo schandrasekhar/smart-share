@@ -1,6 +1,7 @@
 'use strict';
 
 //requires jquery
+//requires utils
 
 smartshare.create = function() {
     var templateId = "#create-template";
