@@ -1,13 +1,14 @@
 'use strict';
 
 //requires jquery
+//requires utils
 
-smartshare.create = function() {
-    var templateId = "#create-template";
-    var formElementId = "#create-form";
-    var usernameNameAttr = "[name='createusername']";
-    var passNameAttr = "[name='createpass']";
-    var postUrl = "/register";
+smartshare.login = function() {
+    var templateId = "#login-template";
+    var formElementId = "#login-form";
+    var usernameNameAttr = "[name='loginusername']";
+    var passNameAttr = "[name='loginpass']";
+    var postUrl = "/login";
     var sessionVar = "smartshare-session";
     var sessionSetEvent = "smartshare-session-set";
 
@@ -35,7 +36,7 @@ smartshare.create = function() {
             var username = $(usernameNameAttr).val();
             var pass = $(passNameAttr).val();
             if (valid(username, pass)) {
-                createUser(username, pass);
+                loginUser(username, pass);
             }
         });
     };
@@ -46,7 +47,7 @@ smartshare.create = function() {
         });
     };
 
-    var createUser = function(username, pass) {
+    var loginUser = function(username, pass) {
         var data = {
             "username": username,
             "pass": pass

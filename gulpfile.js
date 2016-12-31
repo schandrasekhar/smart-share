@@ -10,8 +10,12 @@ var uglifycss = require('gulp-uglifycss');
 var paths = {};
 paths.scripts = ["./bower_components/jquery/dist/jquery.js",
                  "./src/modules/Web/js/index.js",
-                 "./src/modules/Web/js/create.js"];
-paths.styles = ["./bower_components/pure/pure.css"];
+                 "./src/modules/Web/js/utils.js",
+                 "./src/modules/Web/js/create.js",
+                 "./src/modules/Web/js/login.js"];
+
+paths.styles = ["./bower_components/pure/pure.css",
+                "./src/modules/Web/css/app.css"];
 
 paths.templates = ["./src/modules/Web/html/index.html"];
 

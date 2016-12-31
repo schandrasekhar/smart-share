@@ -8,7 +8,7 @@ var mongo = new MongoClass(config.db.mongo);
 
 var MainController = function() {
 
-    var userCollection = config.user.collection;
+    var userCollection = config.user.collection.data;
 
     var contructor = function() {
         //

@@ -3,11 +3,25 @@
 var config = {
     "cache": {
         "redis": {
-            "host": 'localhost',
-            "port": 6379
+            "sentinels": [
+            {
+                "host": 'localhost',
+                "port": 16380
+            },
+            {
+                "host": 'localhost',
+                "port": 16381
+            },
+            {
+                "host": 'localhost',
+                "port": 16382
+            }
+        ],
+            "name": 'redis-cluster'
         }
     },
 
+    "sessionCacheKeyPrefix": "smartshare-session-",
     "sessionKeyLength": 15,
     "sessionTimeout": 100000000,
 
@@ -20,12 +34,15 @@ var config = {
     },
 
     "user": {
-        "collection": ""
+        "collection": {
+            "auth": "auth",
+            "data": "data"
+        }
     },
 
     "db": {
         "mongo": {
-            "dbPath": "mongodb://localhost:27017,localhost:27018,localhost:27019/encryptedcloud?w=0&readPreference=secondary",
+            "dbPath": "mongodb://localhost:27017,localhost:27018,localhost:27019/smartshare?w=0&readPreference=secondary",
             "options": {
                 "replicaSet": {
                     "rs_name": "rs0"

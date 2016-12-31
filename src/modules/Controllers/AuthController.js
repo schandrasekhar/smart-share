@@ -11,7 +11,7 @@ var utils = new UtilClass();
 
 var AuthController = function() {
 
-    var authCollection = config.user.collection;
+    var authCollection = config.user.collection.auth;
 
     this.login = function(req, res) {
         var username, pass, cred;
@@ -83,10 +83,24 @@ var AuthController = function() {
     };
 
     var setUserSession = function(username, response, successFunc) {
-        var sessionKey = utils.getRandomHash(cache.sessionKeyLength),
-        //TODO create two objects in cache, one which has user meta data, the other to hold sessionKey and username
-            session = {
-                "sessionKey": sessionKey,
+        var userSessionIdentifier = utils.getRandomHash(config.sessionKeyLength),
+            sessionKey = config.sessionCacheKeyPrefix +
+                         username + "-" + userSessionIdentifier;
+
+        //create two objects in cache, one which has user meta data,
+        //the other to hold sessionKey and username
+        cache.set(sessionKey, true, 
+            function(err) {
+                cacheErr(err, response);
+            },
+            function(result) {
+                updateUserMetaInCache(userSessionIdentifier, username, response, successFunc);
+            });
+    };
+
+    var updateUserMetaInCache = function(userSessionIdentifier, username, response, successFunc) {
+        var session = {
+                "dateCreated": (new Date()).getTime(),
                 "dateUpdated": (new Date()).getTime()
             };
         cache.hashInsert(username, session,
@@ -94,7 +108,7 @@ var AuthController = function() {
                     cacheErr(err, response);
                 },
                 function(result) {
-                    successFunc(sessionKey, response);
+                    successFunc(userSessionIdentifier, response);
                 });
     };
 
