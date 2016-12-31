@@ -12,7 +12,9 @@ paths.scripts = ["./bower_components/jquery/dist/jquery.js",
                  "./src/modules/Web/js/index.js",
                  "./src/modules/Web/js/utils.js",
                  "./src/modules/Web/js/create.js",
-                 "./src/modules/Web/js/login.js"];
+                 "./src/modules/Web/js/login.js",
+                 "./src/modules/Web/js/upload.js",
+                 "./src/modules/Web/js/getAll.js"];
 
 paths.styles = ["./bower_components/pure/pure.css",
                 "./src/modules/Web/css/app.css"];

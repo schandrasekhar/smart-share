@@ -26,8 +26,13 @@ var MainController = function() {
                 function(err) {
                     dbErr(err, res);
                 },
-                function(data) {
-                    sendData(data, req, res);
+                function(doc) {
+                    if (doc.length === 1) {
+                        sendData(doc, req, res);
+                    } else {
+                        console.log("Error: Multiple records found");
+                        res.status(500).end();
+                    }
                 });
         } else {
             console.log("Error: No user found");
@@ -36,20 +41,20 @@ var MainController = function() {
     };
 
     this.upload = function(req, res) {
-        var timestamp, data, requestData, user;
+        var timestamp, data, requestData, user, updateObj = {};
         user = req.session.user;
         requestData = req.body.data;
 
         if (requestData && user) {
             timestamp = (new Date()).getTime();
-            data = {
-                timestamp: requestData
-            };
-            mongo.updateOne(userCollection, user, data,
+            updateObj["data." + timestamp] = requestData;
+            mongo.updateOne(userCollection, user, updateObj,
                 function(err) {
                     dbErr(err, res);
                 },
-                sendSuccess(req, res));
+                function(result) {
+                    sendSuccess(req, res);
+                });
         }
     };
 
@@ -63,10 +68,11 @@ var MainController = function() {
         response.send({"status": true});
     };
 
-    var sendData = function(data, request, response) {
+    var sendData = function(doc, request, response) {
+        doc = doc[0].data;
         var jsonData = {
             "status": true,
-            "data": data
+            "data": doc
         };
         response.send(jsonData);
     };

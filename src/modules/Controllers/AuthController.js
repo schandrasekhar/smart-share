@@ -93,7 +93,7 @@ var AuthController = function() {
     var addUserMetaInDb = function(credentials, response) {
         var data = {
             "userHash": credentials.userHash,
-            "data": []
+            "data": {}
         };
         mongo.insertOne(userCollection, data, null,
                 function(err) {
@@ -110,7 +110,7 @@ var AuthController = function() {
 
     var setUserSession = function(credentials, response, successFunc) {
         var userSessionIdentifier = utils.getRandomHash(config.sessionKeyLength),
-            sessionKey = config.sessionCacheKeyPrefix + "-" + userSessionIdentifier;
+            sessionKey = config.sessionCacheKeyPrefix + userSessionIdentifier;
         //create two objects in cache, one which has user meta data,
         //the other to hold sessionKey and userHash
         cache.set(sessionKey, credentials.userHash, 

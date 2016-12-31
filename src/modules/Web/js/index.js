@@ -9,4 +9,6 @@ if (!window.smartshare) {
 $(document).ready(function() {
     smartshare.create();
     smartshare.login();
+    smartshare.upload();
+    smartshare.getAll();
 });

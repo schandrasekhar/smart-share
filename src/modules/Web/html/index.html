@@ -6,46 +6,47 @@
     <script type="text/javascript" src="/build/js/all.min.js"></script>
 </head>
 <body>
+    <div class="container">
+    <!-- create template -->
+        <div id="create-template" class="hide">
+            <form id="create-form" class="pure-form">
+                <fieldset>
+                    <legend>Create User:</legend>
+                    <input type="email" placeholder="Email" required="" name="createusername">
+                    <input type="password" placeholder="Password" required="" name="createpass">
+                    <button type="submit" class="pure-button pure-button-primary">Create</button>
+                </fieldset>
+            </form>
+        </div>
 
-<!-- create template -->
-<div id="create-template" class="hide">
-    <form id="create-form" class="pure-form">
-        <fieldset>
-            <legend>Create User:</legend>
-            <input type="email" placeholder="Email" required="" name="createusername">
-            <input type="password" placeholder="Password" required="" name="createpass">
-            <button type="submit" class="pure-button pure-button-primary">Create</button>
-        </fieldset>
-    </form>
-</div>
+        <!-- login template -->
+        <div id="login-template" class="hide">
+            <form class="pure-form" id="login-form">
+                <fieldset>
+                    <legend>Login User:</legend>
+                    <input type="email" placeholder="Email" required="" name="loginusername">
+                    <input type="password" placeholder="Password" required="" name="loginpass">
+                    <button type="submit" class="pure-button pure-button-primary">Login</button>
+                </fieldset>
+            </form>
+        </div>
 
-<!-- login template -->
-<div id="login-template" class="hide">
-    <form class="pure-form" id="login-form">
-        <fieldset>
-            <legend>Login User:</legend>
-            <input type="email" placeholder="Email" required="" name="loginusername">
-            <input type="password" placeholder="Password" required="" name="loginpass">
-            <button type="submit" class="pure-button pure-button-primary">Login</button>
-        </fieldset>
-    </form>
-</div>
-<!-- add data template -->
-<div>
-    <form class="pure-form">
-        <fieldset>
-            <legend>Add Data:</legend>
-            <input type="text" placeholder="Data" required="" name="data">
-            <button type="submit" class="pure-button pure-button-primary">Add</button>
-        </fieldset>
-    </form>
-</div>
+        <!-- add data template -->
+        <div id="upload-template">
+            <form class="pure-form" id="upload-form">
+                <fieldset>
+                    <legend>Add Data:</legend>
+                    <input type="text" placeholder="Data" required="" name="data">
+                    <button type="submit" class="pure-button pure-button-primary">Upload</button>
+                </fieldset>
+            </form>
+        </div>
 
-<!-- getAll data template-->
-<div>
-    <ul>
-        <li>test data</li>
-    </ul>
-</div>
+        <!-- getAll data template-->
+        <div id="getall-template">
+            <ul id="getall-list">
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
