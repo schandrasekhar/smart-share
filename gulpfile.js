@@ -36,17 +36,17 @@ gulp.task('clean', function() {
 
 gulp.task('scripts', function() {
   return gulp.src(paths.scripts)
-    //.pipe(uglify())
+    .pipe(uglify())
     .pipe(concat('all.min.js'))
     .pipe(gulp.dest('public/build/js'));
 });
 
 gulp.task('styles', function() {
   return gulp.src(paths.styles)
-    // .pipe(uglifycss({
-    //   "maxLineLen": 80,
-    //   "uglyComments": false
-    // }))
+    .pipe(uglifycss({
+       "maxLineLen": 80,
+       "uglyComments": true
+    }))
     .pipe(concat('all.min.css'))
     .pipe(gulp.dest('public/build/css'));
 });

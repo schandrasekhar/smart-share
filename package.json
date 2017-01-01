@@ -3,15 +3,18 @@
   "description": "A smart sharing tool",
   "dependencies": {
     "MongoClass": "git+https://github.com/schandrasekhar/mongoClass.git#v1.0.0",
-    "RedisClass": "git+https://github.com/schandrasekhar/redisClass.git#v1.0.1",
+    "RedisClass": "git+https://github.com/schandrasekhar/redisClass.git#v1.0.3",
     "UtilClass": "git+https://github.com/schandrasekhar/utilClass.git#v1.0.1",
     "body-parser": "^1.15.2",
+    "bower": "^1.8.0",
     "del": "^2.2.2",
     "express": "^4.14.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.0.4",
     "gulp-uglify": "^2.0.0",
+    "gulp-uglifycss": "^1.0.6",
+    "install": "^0.8.4",
     "jshint": "^2.9.4"
   },
   "private": true
